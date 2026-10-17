@@ -7,6 +7,15 @@ export class GenericRepo<T extends mongoose.Document> {
         this.model = model;
     }   
 
+
+    async paginate(page: number, limit: number): Promise<{ data: T[]; totalPages: number; totalItems: number }> {
+        const skip = (page - 1) * limit;
+        const totalItems = await this.model.countDocuments();
+        const totalPages = Math.ceil(totalItems / limit);
+        const data = await this.model.find().skip(skip).limit(limit).exec();
+        return { data, totalPages, totalItems };
+    }
+
     async create(item: Partial<T>): Promise<T> {
         const newItem = new this.model(item);
         return await newItem.save();

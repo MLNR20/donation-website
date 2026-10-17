@@ -6,4 +6,5 @@ export interface iCauseRepo {
     getAllCauses(): Promise<any[]>;
     updateCause(causeId: string, causeData: any): Promise<any>;
     deleteCause(causeId: string): Promise<void>;
+    retrieveActiveUser(userId: string): Promise<any>;
 } 

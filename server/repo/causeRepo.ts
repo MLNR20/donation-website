@@ -26,5 +26,9 @@ export default class CauseRepo extends genericRepo<any> implements iCauseRepo {
     async deleteCause(causeId: string): Promise<void> {
         await this.delete(causeId);
     }
+
+    async retrieveActiveUser(userId: string): Promise<any> {
+        return this.findById(userId);
+    }
     
 }

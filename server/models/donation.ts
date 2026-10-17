@@ -9,6 +9,7 @@ export interface IDonation extends Document {
 
 const donationSchema: Schema = new Schema({
   user_id: { type: mongoose.Types.ObjectId, ref: 'User', required: true },
+  cause_id: { type: mongoose.Types.ObjectId, ref: 'Cause', required: true },
   amount: { type: Number, required: true },
   donor: { type: String, required: true },
   date: { type: Date, default: Date.now }
